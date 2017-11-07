@@ -66,7 +66,7 @@ public class UserDao {
                 if(resultSet.next()) {
                     user.setUserId(resultSet.getString("USERNAME"));
                     user.setName(resultSet.getString("NAME"));
-                    user.setAvatarUrl(getUserIcon(user.getUserId()));
+                    user.setAvatarUrl("/" + user.getName() + ".icon");
                     userList.add(user);
                 }
                 System.out.println(user);
@@ -141,7 +141,7 @@ public class UserDao {
                 user.setUserId(firstUser);
                 user.setName(getName(firstUser));
             }
-            user.setAvatarUrl(getUserIcon(user.getUserId()));
+            user.setAvatarUrl("/" + user.getName() + ".icon");
             System.out.println(user);
             userList.add(user);
         }
@@ -156,42 +156,20 @@ public class UserDao {
             User user = new User();
             user.setUserId(username);
             user.setName(name);
-            user.setAvatarUrl(getUserIcon(user.getName()));
+            user.setAvatarUrl("/" + user.getName() + ".icon");
             System.out.println(user);
             userList.add(user);
         }
         return userList;
     }
 
-    public String getUserIcon(String userName){
-        DataBaseConnection dataBaseConnection = new DataBaseConnection();
-        String url = "";
-        try {
-            String sql = "SELECT * FROM sys_userphoto WHERE USERNAME=  ?";
-            PreparedStatement preparedStatement = dataBaseConnection.preparedStatement(sql);
-            preparedStatement.setString(1,userName);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
-                url = resultSet.getString("PHOTO0");
-                System.out.println("usrname " +userName + " url" + url );
-
-            }
-            System.out.println("usrname " + " url" + url );
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        } finally {
-            dataBaseConnection.close();
-        }
-        return url;
-    }
 
 
 
 
     public static void main(String[] args) {
         UserDao userDao = new UserDao();
-        System.out.println(userDao.getUserIcon("admin"));
+        System.out.println(userDao.delteFriend("1","2"));
     }
 
 }

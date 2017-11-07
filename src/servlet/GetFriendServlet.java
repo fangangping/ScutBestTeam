@@ -22,7 +22,6 @@ public class GetFriendServlet extends HttpServlet {
         List<User> userList = userDao.getUserFriend(userName);
         Gson gson = new Gson();
         String data = gson.toJson(userList);
-        response.setContentType("text/html;charset=utf-8");
         response.setCharacterEncoding("utf-8");
         PrintWriter printWriter = response.getWriter();
         System.out.println(data);

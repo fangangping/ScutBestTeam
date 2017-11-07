@@ -17,7 +17,6 @@ public class AddNewFriendServlet extends HttpServlet {
         String user2 = request.getParameter("friendId");
         UserDao userDao = new UserDao();
         String statusCode = userDao.addNewFriend(user1,user2);
-        response.setContentType("text/html;charset=utf-8");
         response.setCharacterEncoding("utf-8");
         PrintWriter printWriter = response.getWriter();
         System.out.println(statusCode);

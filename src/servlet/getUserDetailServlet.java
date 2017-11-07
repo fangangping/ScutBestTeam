@@ -24,7 +24,6 @@ public class getUserDetailServlet extends HttpServlet {
         System.out.println("usetList"+userList);
         List<User> userList1 = userDao.getUserDeatial(userList);
         String data = gson.toJson(userList1);
-        response.setContentType("text/html;charset=utf-8");
         response.setCharacterEncoding("utf-8");
         PrintWriter printWriter = response.getWriter();
         System.out.println(data);

@@ -2,12 +2,14 @@ package Dao;
 
 import com.google.gson.Gson;
 import entity.Moment;
+import entity.ResultInfo;
 import entity.Tweet;
 import util.DataBaseConnection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -80,7 +82,7 @@ public class MomentDao {
             dataBaseConnection.close();
         }
         Moment moment = new Moment();
-        moment.setResult("true");
+        moment.setResult("success");
         moment.setTweets(tweetList);
         return moment;
     }
@@ -91,5 +93,25 @@ public class MomentDao {
         System.out.println(gson.toJson(momentDao.getMoments("d911d63edb4a4757bcad7f6fee5c6420")));
     }
 
-
+    public ResultInfo addMoments(String tweet_id,String userName ,Date now,String tweet_content){
+        DataBaseConnection dataBaseConnection = new DataBaseConnection();
+        List<Tweet> tweetList = new LinkedList<>();
+        ResultInfo resultInfo=new ResultInfo();
+        resultInfo.setResult("failure");
+        try {
+            String sql2 = "insert into app_tweet(tweet_id,friend_id,tweet_time,tweet_content)  VALUES (?,?,?,?) ";
+            PreparedStatement preparedStatement2 = dataBaseConnection.preparedStatement(sql2);
+            preparedStatement2.setString(1,tweet_id);
+            preparedStatement2.setString(2,userName);
+            preparedStatement2.setDate(3,new java.sql.Date(now.getTime()));
+            preparedStatement2.setString(4,tweet_content);
+            preparedStatement2.executeUpdate();
+            resultInfo.setResult("success");
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            dataBaseConnection.close();
+        }
+        return resultInfo;
+    }
 }
