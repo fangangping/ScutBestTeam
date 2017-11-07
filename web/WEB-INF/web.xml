@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+
+
+    <servlet>
+        <servlet-name>getUserFriendServlet</servlet-name>
+        <servlet-class>servlet.GetFriendServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getUserFriendServlet</servlet-name>
+        <url-pattern>/getUserFriend</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet>
+        <servlet-name>addNewFriend</servlet-name>
+        <servlet-class>servlet.AddNewFriendServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addNewFriend</servlet-name>
+        <url-pattern>/addNewFriend</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>getUserDetail</servlet-name>
+        <servlet-class>servlet.getUserDetailServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getUserDetail</servlet-name>
+        <url-pattern>/getUserDetail</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>deleteFriendServlet</servlet-name>
+        <servlet-class>servlet.DeleteFriendServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteFriendServlet</servlet-name>
+        <url-pattern>/deleteFriend</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getMomentServlet</servlet-name>
+        <servlet-class>servlet.GetCommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getMomentServlet</servlet-name>
+        <url-pattern>/getMoment</url-pattern>
+    </servlet-mapping>
+    
+</web-app>
